@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<!-- cart section end -->
+<section class="cart-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="cart-table">
+                    <h3>Your Cart</h3>
+                    <div class="cart-table-warp">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="product-th">Product</th>
+                                <th class="quy-th">Quantity</th>
+                                <th class="total-th">Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for cart in carts %}
+                                    <tr>
+                                <td class="product-col">
+                                    <img src="{{ cart.image }}" alt="">
+                                    <div class="pc-title">
+                                        <h4>{{ cart.name }}</h4>
+                                        <p>${{ jewelry.price }}</p>
+                                    </div>
+                                </td>
+                                <td class="quy-col">
+                                    <h4>&nbsp;&nbsp;&nbsp;&nbsp; {{ cart.quantity }}</h4>
+                                </td>
+                                <td class="total-col"><h4>${{ cart.price }}</h4></td>
+
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="total-cost">
+                        <h6>Total <span>${{ total }}</span></h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 card-right">
+                <a href="{% url 'delete' %}" class="site-btn sb-dark">Clear Cart</a>
+                <a href="{% url 'allclothes' %}" class="site-btn sb-dark">Continue shopping</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- cart section end -->
+
+<!-- Related product section -->
+<section class="related-product-section">
+    <div class="container">
+        <div class="section-title text-uppercase">
+            <h2>Continue Shopping</h2>
+        </div>
+        <div class="row">
+            {% for cloth in clothes %}
+            <div class="col-lg-3 col-sm-6">
+                <div class="product-item">
+                    <div class="pi-pic">
+                        <div class="tag-new">New</div>
+                        <a href="{% url 'detailC' cloth.id %}"> <img src="{{ cloth.image }}" alt=""></a>
+                    </div>
+                    <div class="pi-text">
+                        <h6>${{cloth.price}}</h6>
+                        <a href="{% url 'detailC' cloth.id %}"><p>{{ cloth.name }}</p></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Related product section end -->
+
+{% endblock %}

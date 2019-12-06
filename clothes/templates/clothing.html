@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<!-- Product filter section -->
+<section class="category-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 order-2 order-lg-1">
+                <div class="filter-widget">
+                    <h2 class="fw-title">Categories</h2>
+                    <ul class="category-menu">
+                        <li class=""><a href="{% url 'category' category='Shorts'%}">Shorts</a>
+                        </li>
+                        <li class=""><a href="{% url 'category' category='Tops'%}">Tops</a></li>
+                        <li class=""><a href="{% url 'category' category='Jeans'%}">Jeans</a></li>
+                        <li class=""><a href="{% url 'category' category='Dresses'%}">Dresses</a></li>
+                        <li class=""><a href="{% url 'category' category='Coats & Jackets'%}">Coats & Jackets</a></li>
+                        <li class=""><a href="{% url 'category' category='Jumpers'%}">Jumpers</a></li>
+                        <li class=""><a href="{% url 'category' category='Shoes'%}">Shoes</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-9  order-1 order-lg-2 mb-5 mb-lg-0">
+                <div class="row">
+                    {% for cloth in clothes %}
+                  <div class="col-lg-4 col-sm-6">
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <a href="{% url 'detailC' cloth.id %}"><img src="{{ cloth.image }}" alt=""></a>
+                                <div class="pi-links">
+                                    <a href="{% url 'cartCloth' cloth.id %}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+                                </div>
+                            </div>
+                            <div class="pi-text">
+                                <h6>${{ cloth.price }}</h6>
+                                <a href="{% url 'detailC' cloth.id %}">  <p>{{ cloth.name }}</p></a>
+                            </div>
+                        </div></a></div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
